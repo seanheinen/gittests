@@ -1,0 +1,100 @@
+<ion-view view-title="Task" cache-view="false">
+
+
+  <ion-side-menus>
+
+    <!-- Left menu -->
+    <ion-side-menu side="left" class="left-side-menu" ng-controller="epic-sidemenu">
+    
+      <ng-include src="sidemenuMarkup"></ng-include>
+  
+    </ion-side-menu>
+
+
+    <!-- Main content, usually <ion-nav-view> -->
+    <ion-side-menu-content>  
+
+    <!-- Main content, usually <ion-nav-view> -->
+      <div id="inc-page">
+        <ion-header-bar class="bar-positive" align-title="center">
+            <a class="button button-icon icon ion-navicon" menu-toggle="left"></a>
+            <h1 class="title">Task Overview</h1>        
+            <button class="button icon" ng-class="overviewToggleIconClass" ng-click="toggleOverview()"></button>
+        </ion-header-bar>
+
+        <ion-subheader-bar class="bar bar-subheader bar-stable inc-header incident-subheader" ng-show="overviewToggle">
+          
+          <ion-list class="incident-form" style="width:100%;">
+
+            <ion-item class="task-role" ng-class="{'task-role-member': checkIncidentRole(), 'task-role-commander': !checkIncidentRole()}">          
+              <h3>{{task.role}}</h3>
+            </ion-item>
+        
+            <ion-item class="item-avatar-left">
+              <img style="top:auto; padding: 2px;" ng-src="{{task.CategoryIcon}}" ng-class="getPriorityClass()">
+              <h3>{{task.CategoryLab4}}</h3>
+              <h4>Priority {{task.Priority}}</h4>
+              <h4>{{task.FormatTime}} - {{task.FormatDate}}</h4>
+            </ion-item>
+          
+            <ion-item class="status-chat-buttons">
+              <div>
+                <button ng-disabled="!checkRole()" class="button icon icon-right ion-arrow-down-b button-block button-positive inc-status-but" ng-show="!showResolveButton()" ng-click="changeStatus()">{{task.TaskStatusName}}
+                </button>          
+                <button ng-disabled="checkIncidentRole()" class="button icon icon-right ion-arrow-down-b button-block button-positive inc-status-but" ng-show="showResolveButton()" ng-click="goResolution()">
+                Resolution
+                </button>          
+              </div>
+              <div >
+                <button class="button icon icon-right ion-chatbox-working button-block button-positive inc-status-but"  ng-click="addComment()"></button>
+              </div>          
+              <div>
+                <button class="button icon icon-right ion-loop button-block button-positive inc-status-but"  ng-click="saveTask()"></button>
+              </div>          
+            </ion-item> 
+          </ion-list>
+        </ion-subheader-bar>      
+
+        <ion-tabs class="incident-tabs tabs-icon-bottom tabs-positive" ng-class="{'minimize' :  !overviewToggle}">
+
+          <!-- Details -->
+          <ion-tab title="Details" icon-on="ion-ios-information" icon-off="ion-ios-information-outline" class="border-color1" href="#/task/details">
+            <ion-nav-view name="task-details"></ion-nav-view>
+          </ion-tab>
+
+          <!-- Caller details -->
+          <ion-tab title="Caller" icon-on="icon ion-ios-telephone" icon-off="ion-ios-telephone" class="border-color1" href="#/task/caller">
+            <ion-nav-view name="task-caller"></ion-nav-view>
+          </ion-tab>          
+
+          <!-- Other Unit details -->
+          <ion-tab title="Other Units" icon-on="icon ion-person-stalker" icon-off="ion-person-stalker" class="border-color1" href="#/task/units">
+            <ion-nav-view name="task-units"></ion-nav-view>
+          </ion-tab>
+
+          <!-- Navigate -->
+          <!--
+          <ion-tab title="Navigate" icon-on="ion-ios-location" icon-off="ion-ios-location" class="border-color1" href="#/task/navigate">
+            <ion-nav-view name="task-navigate"></ion-nav-view>
+          </ion-tab>
+          -->
+
+          <!-- Media -->
+          <ion-tab title="Media" icon-on="ion-ios-videocam" icon-off="ion-ios-videocam" class="border-color1" href="#/task/media">
+            <ion-nav-view name="task-media"></ion-nav-view>
+          </ion-tab>    
+
+          <!-- Short Form -->
+          <ion-tab title="Form" icon-on="ion-android-list" icon-off="ion-android-list" class="border-color1" href="#/task/form">
+            <ion-nav-view name="task-form"></ion-nav-view>
+          </ion-tab>      
+          
+        </ion-tabs>
+      </div>
+
+
+    </ion-side-menu-content>
+
+  </ion-side-menus>
+
+</ion-view>

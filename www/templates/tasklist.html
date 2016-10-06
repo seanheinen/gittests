@@ -1,0 +1,337 @@
+<ion-view view-title="Tasklist" cache-view="false">
+  <ion-side-menus>
+    
+    <!-- Left menu -->
+    <ion-side-menu side="left" class="left-side-menu" ng-controller="epic-sidemenu">
+
+      <ng-include src="sidemenuMarkup"></ng-include>
+  
+    </ion-side-menu>
+
+
+    <!-- Main content, usually <ion-nav-view> -->
+    <ion-side-menu-content>  
+
+      <div id="task-page">
+        <ion-pane>
+
+          <!-- floating action menu start -->      
+          <nav mfb-menu            
+            id="floating-action"              
+            position="br" 
+            effect="slidein-spring" 
+            label="Collapse"
+            active-icon="ion-minus-round" 
+            resting-icon="ion-plus-round"
+            toggling-method="click"
+            style="margin-bottom: 60px;"
+            template-url="ng-mfb-menu-btn.tpl.html"
+            main-action="refreshTasks()">
+            
+          </nav>
+          <!-- floating action menu end -->
+          <ion-header-bar class="bar-positive" align-title="center">
+              <a class="button button-icon icon ion-navicon" menu-toggle="left"></a>
+              <div class="h1 title">Task List</div>
+          </ion-header-bar>
+
+
+          <ion-tabs class="tabs-icon-bottom tabs-positive">
+            
+            <ion-tab title="Active Tasks" icon-on="ion-android-list" icon-off="ion-android-list" on-select="resetTaskView(0)" badge="activeTaskCount" badge-style="badge-assertive">
+              <!-- Tab 1 content -->
+              
+              <ion-view>
+                <ion-content overflow-scroll="false" class="has-notop" cta>  
+
+                  <!-- loader -->          
+                  <div class="list-loader" ng-class="{ 'on': refreshList }">
+                  
+                    <div class="refresh-text">
+                      <div style="text-align: center;">                  
+                        <div><ion-spinner style="width150px;" icon="android"></ion-spinner></div>
+                      </div>
+                      <!--<ion-spinner></ion-spinner> -->
+                    </div>              
+                    <!-- loader -->
+
+                    <!-- no tasks - phone -->                          
+                    <div ng-show="noActiveTasks()" class="no-tasks placeholder-image">
+                      <img src="img/list-item-illu.jpg" width="200px" height="200px">
+                      <h3>No new tasks available</h3>
+                      <h5>Please refresh to check for tasks.</h5>
+                    </div>
+
+                    <ion-list id="task-list" overflow-scroll="false">  
+                                  
+                      <ion-item class="task-items item-avatar-left" ng-repeat='task in tasks | tasklistFilter:"active"' ng-class="{'task-selected': isTaskShown(task)}" ng-click="toggleTask(task)" >
+                      <!--<ion-item class="task-items item-avatar-left" ng-repeat='task in tasks' ng-class="{'task-selected': isTaskShown(task)}" ng-click="toggleTask(task)" >-->
+                        <img style="padding: 2px;" ng-src="{{task.CategoryIcon}}" ng-class="getPriorityClass(task)">
+                        <h2 style="padding-right: 80px; font-size:14px;">
+                          Task ID: {{task.TaskID}}
+                        </h2>                        
+                        <h2 style="font-size:14px;">
+                          {{task.CategoryLab4}}
+                        </h2>
+                        <span class="item-note timestamp"><p>{{task.Timestamp}}</p></span>
+                        <p class="tasklist-status">Status: {{task.TaskStatusName}}</p>
+
+                        <!-- slideout below -->
+                        <div class="button-bar item-accordion" ng-show="isTaskShown(task)">
+                          <button class="button icon-left ion-search  button-positive" ng-click="viewTask(task); $event.stopPropagation();">View</button>
+                          <button class="button icon-left ion-checkmark button-balanced" ng-click="openTask(task); $event.stopPropagation();">                             
+                            {{ getTasklistAction(task) }}
+                          </button>
+                        </div>
+                      </ion-item> 
+
+                    </ion-list>
+                  </div>
+                </ion-content>
+
+                <div class="tablet-land-quick-view">
+                  <div class="tablet-land-noitem-selected placeholder-image" ng-show="task === null">
+                    <img src="img/list-item-illu.jpg" width="300px" height="300px">
+                    <h3>No items selected</h3>
+                    <h5>Select an item in the task list or refresh if no items are listed.</h5>
+                  </div>
+                  <ion-content class="tablet-land-item-selected" overflow-scroll="false"  ng-show="task != null">
+                    <div class="inc-header">
+                      <div class="padding">
+                        <div class="inc-icon"><img width="70px" ng-src="{{task.CategoryIcon}}" ng-class="getPriorityClass({{task}})" /></div>
+                        <h3>{{task.TypeDescription}}</h3> 
+                        <h4>Priority {{task.Priority}}</h4>
+                        <h6>{{task.Time}}&nbsp;&nbsp;&nbsp;&nbsp;{{task.FormatDate}}</h6>
+                      </div> 
+                      
+                      <div class="button-bar padding">
+                        <button class="button button-balanced" ng-click="openTask(task)">{{ task.Status === "E0002" || task.Status === "E0001" ? "Accept" : "Open"}}</button>
+                      </div>        
+                    </div>
+
+                    <ion-list class="incident-form">
+                      
+                      <ion-item class="item-divider">
+                        Incident Details
+                      </ion-item>
+                    
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Incident ID</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.IncidentID"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Street</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.Street"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Suburb</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.Suburb"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Town</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.Suburb"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">X Road</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task['X-Road']"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Floor</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.AddressFloorRoom"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Ward</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.AddressWard"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Patient</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.Patient"></textarea>
+                        </label>
+                      </ion-item>      
+                      
+                    </ion-list>                
+                      
+                  </ion-content>
+                </div>
+
+              </ion-view>
+              
+            </ion-tab>
+          
+
+
+
+
+            <ion-tab title="Resolved Tasks" icon-on="ion-android-checkbox" icon-off="ion-android-checkbox" on-select="resetTaskView(1)" badge="resolvedTaskCount" badge-style="badge-assertive">                
+                
+              <ion-view>                  
+
+                <ion-content overflow-scroll="false" class="has-notop" cta>  
+
+                
+                  <div class="list-loader" ng-class="{ 'on': refreshList }">
+                  
+                    <div class="refresh-text">
+                      <div style="text-align: center;">                  
+                        <div><ion-spinner style="width150px;" icon="android"></ion-spinner></div>
+                      </div>
+                
+                    </div>                          
+                
+                    <div ng-show="noInactiveTasks()" class="no-tasks placeholder-image">
+                      <img src="img/list-item-illu.jpg" width="200px" height="200px">
+                      <h3>No closed tasks available</h3>
+                      <h5>Please refresh to check for tasks.</h5>
+                    </div>
+
+                    <ion-list id="task-list" overflow-scroll="false">  
+                                  
+                      <ion-item class="task-items item-avatar-left" ng-repeat='task in tasks | tasklistFilter:"inactive"' ng-class="{'task-selected': isTaskShown(task)}" ng-click="toggleTask(task)" >
+                        <img style="padding: 2px;" ng-src="{{task.CategoryIcon}}" ng-class="getPriorityClass(task)">
+                        <h2 style="padding-right: 80px; font-size:14px;">
+                          Task ID: {{task.TaskID}}
+                        </h2>                        
+                        <h2 style="padding-right: 80px; font-size:14px;">
+                          {{task.CategoryLab4}}
+                        </h2>
+                        <span class="item-note timestamp"><p>{{task.Timestamp}}</p></span>
+                        <p class="tasklist-status">Status: {{task.TaskStatusName}}</p>
+                        
+                        <div class="button-bar item-accordion" ng-show="isTaskShown(task)">
+                          <button class="button icon-left ion-search  button-positive" ng-click="viewTask(task); $event.stopPropagation();">View</button>
+                          <button class="button icon-left ion-checkmark button-balanced" ng-click="openTask(task); $event.stopPropagation();">Open</button>
+                        </div>
+                      </ion-item> 
+
+                    </ion-list>
+                  </div>
+                </ion-content>
+
+                <div class="tablet-land-quick-view">
+                  <div class="tablet-land-noitem-selected placeholder-image"  ng-show="task === null">
+                    <img src="img/list-item-illu.jpg" width="300px" height="300px">
+                    <h3>No items selected</h3>
+                    <h5>Select an item in the task list or refresh if no items are listed.</h5>
+                  </div>
+                  <ion-content class="tablet-land-item-selected" overflow-scroll="false"  ng-show="task != null">
+                    <div class="inc-header">
+                      <div class="padding">
+                        <div class="inc-icon"><img width="70px" ng-src="{{task.CategoryIcon}}" ng-class="getPriorityClass({{task}})" /></div>
+                        <h3>{{task.TypeDescription}}</h3>
+                        <h4>Priority {{task.Priority}}</h4>
+                        <h6>{{task.Time}}&nbsp;&nbsp;&nbsp;&nbsp;{{task.FormatDate}}</h6>
+                      </div>
+                      
+                      <div class="button-bar padding">
+                        <button class="button button-balanced" ng-click="openTask(task)">Open</button>
+                      </div>        
+                    </div>
+
+                    <ion-list class="incident-form">
+                      
+                      <ion-item class="item-divider">
+                        Incident Details
+                      </ion-item>
+                    
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Incident ID</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.IncidentID"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Street</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.Street"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Suburb</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.Suburb"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Town</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.Suburb"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">X Road</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task['X-Road']"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Floor</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.AddressFloorRoom"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Ward</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.AddressWard"></textarea>
+                        </label>
+                      </ion-item>
+                      
+                      <ion-item>
+                        <label class="item item-input item-stacked-label">
+                          <span class="input-label">Patient</span>
+                          <textarea msd-elastic placeholder="-" ng-model="task.Patient"></textarea>
+                        </label>
+                      </ion-item>      
+                      
+                    </ion-list>                
+                      
+                  </ion-content>
+                </div>
+
+                    
+
+              </ion-content>
+            </ion-view>              
+          </ion-tab>     
+
+          
+            
+        </ion-tabs>
+
+
+        </ion-pane>
+      </div>
+
+    </ion-side-menu-content>
+
+  </ion-side-menus>
+
+</ion-view>

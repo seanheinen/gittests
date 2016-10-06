@@ -1,0 +1,30 @@
+<ion-view view-title="search"  cache-view="false">
+  <div class="bar bar-header bar-positive">    
+    <button class="button icon ion-chevron-left nav-buttons" ng-click="$back()"></button>
+    <h1 class="title"> {{searchTitle}} </h1>
+  </div>
+
+  <div class="bar bar-subheader item-input-inset bar-positive no-padding ">
+    <div class="list list-inset checkin-searchbox">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="search.searchInput" ng-keyup="selectResults()" ng-filter="">
+      </label>
+    </div>
+  </div>
+  <ion-content class="has-header has-subheader" overflow-scroll="true">    
+    <ion-list>
+      <ion-item class="no-search-results" ng-hide="search.searchInput.length > 0">
+        Please enter in your search criteria in the above search box. Only employees from your Department will be displayed.
+      </ion-item>
+      <ion-item class="no-search-results" ng-show="searchResults.length > 29">
+        Only 30 results are being displayed. Please refine your search criteria.
+      </ion-item>
+      <ion-item class="no-search-results" ng-show="search.searchInput.length < 1 && search.searchInput.length > 0">
+        There were no results obtained for your search criteria.
+      </ion-item>
+      <ion-item class="item-avatar-left item-button-right" ng-repeat="item in searchResults" ng-include="resultTemplate" ng-click="searchClick(item)">
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

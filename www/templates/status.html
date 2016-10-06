@@ -1,0 +1,149 @@
+<ion-view view-title="status" cache-view="false">
+  <ion-side-menus>
+
+    <!-- Left menu -->
+    <ion-side-menu side="left" class="left-side-menu" ng-controller="epic-sidemenu">
+
+      <ng-include src="sidemenuMarkup"></ng-include>
+
+    </ion-side-menu>
+
+
+  	<!-- Main content, usually <ion-nav-view> -->
+    <ion-side-menu-content>  
+
+      <div id="reg-page">
+        <ion-pane>
+
+          <!-- floating action menu start -->      
+          <nav id="floating-action" 
+            mfb-menu position="br" 
+            effect="slidein-spring" 
+            label="Collapse"
+            active-icon="ion-minus-round" 
+            resting-icon="ion-plus-round"
+            toggling-method="click"
+            style="margin-bottom: 60px;"
+            template-url="ng-mfb-menu-btn.tpl.html"
+            main-action="refreshAlerts()">            
+          </nav>
+          <!-- floating action menu end -->
+
+          <ion-header-bar class="bar-positive" align-title="center">
+            <a class="button button-icon icon ion-navicon" menu-toggle="left"></a>
+            <div class="h1 title">Unit Status</div>          
+          </ion-header-bar>
+          
+          <div class="reg-content has-header">
+
+            <div class="padding">
+              <h6 class="status-change-title">Click button to change your status</h6>
+              <button ng-disabled="!checkRole()" class="button button-block icon icon-right ion-arrow-down-b status-description" ng-class="getStatusClass(unit.Status)" ng-click="ChangeStatus()">{{unit.StatusDescription}}</button>
+              
+            </div>
+            
+            <ul class="list">
+              <li class="padding item-divider" style="border-top:">
+                EPIC Alerts
+              </li>
+            </ul>
+
+          </div>
+
+          <ion-tabs class="tabs-icon-bottom tabs-positive">
+            
+            <ion-tab title="Departmental" icon-on="ion-ios-home" icon-off="ion-ios-home-outline">
+              <!-- Tab 1 content -->
+              
+              <ion-view>
+                <ion-content overflow-scroll="false" class="has-notop" cta>  
+                  <!-- loader -->                    
+                  <div class="list-loader" ng-class="{ 'on': refreshList }">
+                    
+                    <div class="refresh-text">
+                      <div style="text-align: center;">                          
+                        <div><ion-spinner style="width150px;" icon="android"></ion-spinner></div>
+                      </div>                        
+                    </div>              
+                    <!-- loader -->
+
+                    <ion-list ng-show="alerts.length">
+                      <ion-item class="item-avatar-left" ng-repeat="alert in alerts">
+                        <img style="padding: 2px;" ng-src="{{alert.CategoryIcon}}" ng-class="getPriorityClass(alert)">                        
+                        <h2 style="padding-right: 80px; white-space: normal; font-size:14px;">{{alert.AlertMessage}}                          
+                        </h2>
+                        <p class="tasklist-status">{{alert.Location}}</p>
+                        <span class="item-note timestamp"><p>{{alert.Timestamp}}</p></span>                        
+                      </ion-item>
+                    </ion-list>
+                  </div>
+
+                  <div class="tablet-land-noepic-news placeholder-image" style="bottom: 90px; position: relative;" ng-show="!alerts.length && !refreshList">
+                    <img src="img/alert-item-illu.jpg" width="300px" height="300px">
+                      <h3>No Alerts</h3>
+                      <h5>Click Refresh to retrieve new alerts.</h5>
+                  </div>
+
+                </ion-content>
+                <div>
+              </ion-view>
+              
+            </ion-tab>
+          <!--
+            <ion-tab title="Geographical"  icon-on="ion-ios-navigate" icon-off="ion-ios-navigate-outline">
+              
+              
+              <ion-view>
+                <ion-content overflow-scroll="false" class="has-notop" cta>
+              
+                  <div class="list-loader" ng-class="{ 'on': refreshList }">
+                    
+                    <div class="refresh-text">
+                      <div style="text-align: center;">                          
+                        <div><ion-spinner style="width150px;" icon="android"></ion-spinner></div>
+                      </div>                        
+                    </div>              
+              
+
+                    <ion-list ng-show="alerts.length">
+                      <ion-item class="item-avatar-left" ng-repeat="alert in alerts | filter:{ DepartmentID: unit.DepartmentId }" >
+                        <img style="padding: 2px;" ng-src="{{alert.CategoryIcon}}" ng-class="getPriorityClass(alert)">                        
+                        <h2 style="padding-right: 80px; white-space: normal; font-size:14px;">{{alert.AlertMessage}}                          
+                        </h2>
+                        <span class="item-note timestamp"><p>{{alert.Timestamp}}</p></span> 
+                      </ion-item>                      
+                    </ion-list>
+                  </div>
+
+                  <div class="tablet-land-noepic-news placeholder-image" style="bottom: 90px; position: relative;" ng-show="!alerts.length && !refreshList">
+                    <img src="img/alert-item-illu.jpg" width="300px" height="300px">
+                      <h3>No EPIC Alerts to display</h3>
+                      <h5>Refresh EPIC Mobile to check for newly added alerts.</h5>
+                  </div>
+
+                </ion-content>
+
+              </ion-view>              
+            </ion-tab>            
+          </ion-tabs>
+          -->
+        </ion-pane>
+      </div>
+
+
+    </ion-side-menu-content>
+
+  </ion-side-menus>
+
+</ion-view>
+
+
+
+
+
+
+
+
+
+
+

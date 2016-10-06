@@ -1,0 +1,21 @@
+<ion-view view-title="task-navigate">
+  <ion-content class="has-inc-header" overflow-scroll="true">
+  <div class="item-divider item">Navigation</div>
+
+	  <!-- no photos - phone -->                          
+	  <div ng-show="showMap === false" class="no-map placeholder-image">
+	    <img src="img/Map-item-illu.jpg" width="200px" height="200px">
+	    <h3>Unable to load map</h3>
+	    <h5>Press the RETRY button below to retry.</h5>      
+      <button class="button icon ion-refresh refresh-map-button" ng-click="getMap();"> RETRY</button> 
+	  </div>
+
+    <ui-gmap-google-map center='map.center' zoom='map.zoom' events="map.markersEvents" ng-show="showMap === true">
+      <ui-gmap-marker ng-repeat="m in map.markers" coords="m.coords" icon="m.icon" idkey="m.id"></ui-gmap-marker>
+    </ui-gmap-google-map>  
+
+  </ion-content>
+	<ion-footer-bar class="inc-page-footer">
+    <button class="button inc-navigate-but button-block incident-button icon ion-ios-navigate" ng-click="navigateTo()">  DIRECTIONS</button>
+  </ion-footer-bar>    
+</ion-view>

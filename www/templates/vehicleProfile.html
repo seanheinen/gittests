@@ -1,0 +1,54 @@
+<ion-view view-title="vehicle" cache-view="false" class="profile-screen">
+
+  <div class="bar bar-header bar-positive">    
+    <button class="button icon ion-chevron-left nav-buttons" ng-click="$back()"></button>    
+  </div>
+
+  <div class="profile-header">
+   <!--<a class="button icon-left ion-chevron-left button-clear"></a>-->
+   <div class="user-profile-header">
+     <div class="vehicle-profile-image">
+     	<img src="img/icon-vehicle-default.png">
+     </div>
+     <span class="user-profile-name">{{vehicle.VehicleType}} - {{vehicle.RegNum}}</span>
+     <span class="user-profile-title">{{vehicle.CallSign}}</span>
+   </div>
+  </div>
+
+ 	<ion-content overflow-scroll="true" class="profile-tab-content profile-details" style="top:225px;">
+   	<ion-list class="vehicle-detail-inputs">
+
+			<ion-item>
+       	<span class="input-label">Directorate</span>
+       	<input type="text" readonly value="{{vehicle.directorate}}">
+      </ion-item>
+
+			<ion-item>
+       	<span class="input-label">Department</span>
+       	<input type="text" readonly value="{{vehicle.department}}">
+      </ion-item>
+   
+    	<ion-item>
+       	<span class="input-label">Section</span>
+       	<input type="text" readonly value="{{vehicle.section}}">
+      </ion-item>
+     
+     	<ion-item>
+      	<span class="input-label">Sub-Section</span>
+      	<input type="text" readonly value="{{vehicle.subsection}}">
+     	</ion-item>
+     
+     	<ion-item>
+      	<span class="input-label">District</span>
+      	<input type="text" readonly value="{{vehicle.district}}">
+     	</ion-item>
+     
+     	<ion-item>
+      	<span class="input-label">Base</span>
+      	<input type="text" readonly value="{{vehicle.base}}">
+     	</ion-item>
+     
+   	</ion-list>         
+ 	</ion-content>
+
+</ion-view>

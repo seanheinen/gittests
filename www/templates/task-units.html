@@ -1,0 +1,18 @@
+<ion-view view-title="task-units">
+  <ion-content class="has-inc-header" overflow-scroll="true">
+    <ion-list class="incident-form">
+    
+      <ion-item class="item-divider">
+        All Units Assigned
+      </ion-item>
+
+      <!--<ion-item class="task-items item-avatar-left" ng-repeat='task in tasks' ng-class="{'task-selected': isTaskShown(task)}" ng-click="toggleTask(task)" >-->
+      <ion-item class="task-items item-avatar-left" ng-repeat="unit in taskUnits">
+        <img style="padding: 2px;" ng-src="{{task.CategoryIcon}}" ng-class="getPriorityClass(task)">
+        <h2> {{unit.UnitId}} - {{unit.UnitName}} </h2>        
+        <p class="tasklist-status">Status: {{unit.ActiveTaskStatusDescription}}</p>        
+      </ion-item>       
+     
+    </ion-list>        
+   </ion-content>
+</ion-view>

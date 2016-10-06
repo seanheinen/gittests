@@ -1,0 +1,20 @@
+<ion-modal-view>
+  <div class="bar bar-header bar-positive">        
+    <h1 class="title"> Change Status </h1>
+  </div>
+  
+  <ion-content class="has-header" overflow-scroll="true">    
+
+    <ion-list>
+
+     <ion-item class="item item-icon-left task-status-list" ng-repeat="status in unitSystemStatus | unitStatusFilter:unit.DepartmentShort:unit.Status" ng-click="setStatus(status.id, status.name);">
+       <i class="icon button-positive" ng-class="status.icon"></i>
+       <h2>{{status.name}}</h2>
+       <p>{{status.description}}</p>       
+     </ion-item>    
+     
+    </ion-list>
+
+
+  </ion-content>
+</ion-modal-view>

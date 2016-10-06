@@ -1,0 +1,68 @@
+<ion-pane>
+  <ion-header-bar class="bar bar-positive">
+    <div class="button-bar ">
+      <button class="button icon ion-wifi button-clear" ng-class="networkStatusClass"> {{ networkStatus }} </button>                        
+    </div>
+  </ion-header-bar>
+  
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-thumbnail-left item" ng-click="goProfile(userDetails)" style="padding-left:60px;">
+        <img ng-src="{{ userPhoto }}" class="side-menu-profile" style="left:0px;">              
+        <div class="side-user-name">
+          <span class="side-profile-title">{{userDetails.UserFirstName}} {{userDetails.UserLastName}}</span>
+        </div>              
+        <div class="side-user-role">
+          <span class="side-profile-title">{{userDetails.Role}}</span>
+        </div>
+        <div class="side-user-status" ng-class="getStatusClass(unit.Status)">
+          <span>{{unit.StatusDescription}}</span>
+        </div>
+      </ion-item>            
+    <ion-list>
+    
+    <ion-list>
+
+      <ion-item class="item item-icon-left" ng-click="goHelp()">
+        <i class="icon ion-help"></i>
+        Help
+      </ion-item>            
+      <ion-item class="item item-icon-left" ng-click="goOffline()">
+        <i class="icon ion-upload"></i>
+        Unsent data
+        <span class="badge badge-assertive" ng-show="unsentCount > 0">{{unsentCount}}</span>
+      </ion-item> 
+
+      <ion-item class="item item-icon-left" ng-click="goUnit()">
+        <i class="icon ion-android-car"></i>
+        Unit Details
+      </ion-item> 
+
+      <ion-item class="item item-icon-left" ng-click="goStatus()">
+        <i class="icon ion-flag"></i>
+        Unit Status and Alerts
+      </ion-item>             
+
+      <ion-item class="item item-icon-left" ng-click="goTaskList()">
+        <i class="icon ion-android-list"></i>
+        Task list
+        <span class="badge badge-assertive" ng-show="taskCount > 0">{{taskCount}}</span>
+      </ion-item>  
+
+      <ion-item class="item item-icon-left" ng-click="SelfStart()">
+        <i class="icon ion-alert-circled"></i>
+        Self Start Incident
+      </ion-item>            
+      <ion-item class="item item-icon-left" ng-click="Logout()">
+        <i class="icon ion-power"></i>
+        Logout
+      </ion-item> 
+
+    </ion-list>
+  </ion-content>
+  <ion-footer-bar class="bar-positive">
+    <button class="button icon icon-left ion-loop button-balanced sync-but" ng-click="RefreshAll()">REFRESH</button>
+    <p class="last-synced-ref">Last refreshed:<br /><span>{{lastRefresh.day}}d {{lastRefresh.hour}}h {{lastRefresh.minute}}m </span></p>  
+  </ion-footer-bar>
+  
+</ion-pane>

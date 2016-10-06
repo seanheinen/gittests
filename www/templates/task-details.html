@@ -1,0 +1,67 @@
+<ion-view view-title="task-details">
+  <ion-content class="has-inc-header" overflow-scroll="true">
+           
+    <ion-list class="task-details-form">
+    
+      <ion-item class="item-divider">
+        Task Details
+      </ion-item>
+
+      <ion-item>          
+        <span class="input-label">Incident ID</span>
+        <input type="text" readonly placeholder="-" ng-model="task.IncidentId" />
+      </ion-item>
+      <ion-item>          
+        <span class="input-label">Task ID</span>
+        <input type="text" readonly placeholder="-" ng-model="task.TaskID" />
+      </ion-item>
+      <ion-item>          
+        <span class="input-label">Street Number</span>
+        <input type="text" ng-readonly="!checkRole()" select-on-click placeholder="-" ng-model="task.StreetNo"/>
+      </ion-item>
+      <ion-item>          
+        <span class="input-label">Street Name</span>
+        <input type="text" ng-readonly="!checkRole()" select-on-click placeholder="-" ng-model="task.Street"/>
+      </ion-item>      
+      <ion-item>          
+        <span class="input-label">Suburb</span>
+        <input type="text" ng-readonly="!checkRole()" select-on-click placeholder="-" ng-model="task.Suburb"/>
+      </ion-item>      
+      <ion-item>          
+        <span class="input-label">Town</span>
+        <input type="text" ng-readonly="!checkRole()" select-on-click placeholder="-" ng-model="task.Town"/>
+      </ion-item>
+      <ion-item>          
+        <span class="input-label">Location</span>
+        <input type="text" ng-readonly="!checkRole()" select-on-click placeholder="-" ng-model="task.Location" />
+      </ion-item>
+      <ion-item>          
+        <span class="input-label">Additional Location</span>
+        <input type="text" ng-readonly="!checkRole()" select-on-click placeholder="-" ng-model="task.AddLocation" />
+      </ion-item>
+
+      <div>
+        <div class="row">
+          <div class="col">Geolocation</div>                  
+        </div>
+        <div class="row">                    
+          <div class="col col-50">
+            <input type="text" placeholder="-" ng-model="task.GeoX" readonly>                    
+          </div>
+          <div class="col col-50">                      
+            <input type="text" placeholder="-" ng-model="task.GeoY" readonly>
+          </div>
+        </div>
+      </div>  
+      <div>
+        <div class="row">                  
+          <div class="col">
+            <button ng-disabled="!checkRole()" class="button icon ion-ios-location button-block button-positive set-geolocation" ng-click="getGeolocation()">  Update Geolocation</button>
+          </div>
+        </div>                    
+      </div>                    
+
+    </ion-list>
+
+   </ion-content>
+</ion-view>

@@ -1,0 +1,21 @@
+<ion-view view-title="checkin-proficiencies">
+  <ion-content class="has-footer" overflow-scroll="true">
+           
+    <div class="item item-divider">
+      Unit Proficiency Summary
+    </div>
+   
+    <div class="card" ng-repeat="proficiency in profSummary">
+
+      <div class="item item-divider" ng-class="getProfClass(proficiency)" style="font-weight:16px;">
+        {{proficiency.Description}}
+      </div>
+
+      <ion-list>
+        <ion-item class="item item-toggle" style="padding:5px; font-weight:bold" ng-repeat="employee in proficiency.employees">
+          {{employee.LastName}}, {{employee.FirstName}} 
+        </ion-item>        
+      </ion-list>
+    </div>     
+   </ion-content>
+</ion-view>

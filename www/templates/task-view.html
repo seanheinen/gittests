@@ -1,0 +1,175 @@
+<ion-view view-title="TaskView" cache-view="false">
+  <ion-side-menus>
+
+    <!-- Left menu -->
+    <ion-side-menu side="left" class="left-side-menu" ng-controller="epic-sidemenu">
+
+      <ng-include src="sidemenuMarkup"></ng-include>
+
+    </ion-side-menu>
+
+
+    <!-- Main content, usually <ion-nav-view> -->
+    <ion-side-menu-content>  
+      <div id="inc-view-page">
+      <ion-header-bar class="bar-positive" align-title="center">
+        <a class="button button-icon icon ion-navicon" menu-toggle="left"></a>
+        <div class="h1 title">Task Display</div>
+      </ion-header-bar>
+
+      <ion-subheader-bar class="bar bar-subheader bar-stable inc-header">
+
+        <ion-list class="incident-form" style="width:100%;">
+
+          <ion-item class="task-role" ng-class="{'task-role-member': checkIncidentRole(), 'task-role-commander': !checkIncidentRole()}">          
+            <h3>{{task.role}}</h3>
+          </ion-item>
+      
+          <ion-item class="item-avatar-left">
+            <img style="top:auto; padding: 2px;" ng-src="{{task.CategoryIcon}}" ng-class="getPriorityClass()">          
+            <h3>{{task.CategoryLab4}}</h3>
+            <h4>Priority {{task.Priority}}</h4>
+            <h6>{{task.FormatTime}}&nbsp;&nbsp;&nbsp;&nbsp;{{task.FormatDate}}</h6>
+          </ion-item>
+        
+          <ion-item class="task-view-status item">
+            {{task.TaskStatusName}}
+          </ion-item>
+          <ion-item class="task-view-buttons">
+            <div class="button-bar">
+              <button class="button button-stable" ng-click="$back()">Cancel</button>  
+              <button class="button button-balanced" ng-click="openTask()">{{ getTasklistAction() }}</button>
+            </div>        
+          </ion-item>
+        </ion-list>
+ 
+      </ion-subheader-bar>
+      
+      <ion-tabs id="" class="incident-tabs tabs-icon-bottom tabs-positive">
+
+      <!-- Details -->
+      <ion-tab title="Details" icon-on="ion-ios-information" icon-off="ion-ios-information-outline">
+        <ion-nav-view name="incident-details">
+          <ion-content class="has-inc-header" overflow-scroll="true">           
+          
+            <ion-list class="task-details-form">
+            
+              <ion-item class="item-divider">
+                Task Details
+              </ion-item>
+
+              <ion-item>          
+                <span class="input-label">Task ID</span>
+                <input type="text" readonly placeholder="-" ng-model="task.TaskID" />
+              </ion-item>
+              <ion-item>          
+                <span class="input-label">Street Number</span>
+                <input type="text" readonly  placeholder="-" ng-model="task.StreetNo"/>
+              </ion-item>
+              <ion-item>          
+                <span class="input-label">Street Name</span>
+                <input type="text" readonly  placeholder="-" ng-model="task.Street"/>
+              </ion-item>      
+              <ion-item>          
+                <span class="input-label">Suburb</span>
+                <input type="text" readonly  placeholder="-" ng-model="task.Suburb"/>
+              </ion-item>      
+              <ion-item>          
+                <span class="input-label">Town</span>
+                <input type="text" readonly  placeholder="-" ng-model="task.Town"/>
+              </ion-item>
+              <ion-item>          
+                <span class="input-label">Address</span>
+                <input type="text" readonly  placeholder="-" ng-model="task.Address" />
+              </ion-item>      
+              <ion-item>          
+                <span class="input-label">Location</span>
+                <input type="text" readonly  placeholder="-" ng-model="task.Location" />
+              </ion-item>
+              <ion-item>          
+                <span class="input-label">Location 2</span>
+                <input type="text" readonly  placeholder="-" ng-model="task.AddLocation" />
+              </ion-item>
+              
+            </ion-list>
+
+          </ion-content>
+        </ion-nav-view>
+      </ion-tab>
+
+      <!-- Caller details -->
+      <ion-tab title="Caller" icon-on="icon ion-ios-telephone" icon-off="ion-ios-telephone" class="border-color1">
+        <ion-nav-view name="task-caller">          
+          <ion-content class="has-inc-header" overflow-scroll="true">
+                   
+            <ion-list class="task-details-form">
+            
+              <ion-item class="item-divider">
+                Caller Details
+              </ion-item>
+
+              <ion-item>          
+                <span class="input-label">Firstname</span>
+                <input type="text" readonly placeholder="-" ng-model="task.CallerName" />
+              </ion-item>
+              <ion-item>          
+                <span class="input-label">Surname</span>
+                <input type="text" readonly placeholder="-" ng-model="task.CallerSurname"/>
+              </ion-item>
+              <ion-item>          
+                <span class="input-label">Phone number</span>
+                <input type="text" readonly placeholder="-" ng-model="task.CallerPhoneNo"/>
+              </ion-item>      
+              <ion-item>          
+                <span class="input-label">Alternative Phone number</span>
+                <input type="text" readonly placeholder="-" ng-model="task.CallerAltPhoneNo"/>
+              </ion-item>      
+              <ion-item>          
+                <span class="input-label">Street Number</span>
+                <input type="text" readonly placeholder="-" ng-model="task.CallerStreetNo"/>
+              </ion-item>
+              <ion-item>          
+                <span class="input-label">Street</span>
+                <input type="text" readonly placeholder="-" ng-model="task.CallerStreet" />
+              </ion-item>      
+              <ion-item>          
+                <span class="input-label">Suburb</span>
+                <input type="text" readonly placeholder="-" ng-model="task.CallerSuburb" />
+              </ion-item>
+              <ion-item ng-repeat="note in taskNotes">          
+                <span class="input-label">{{note.Header}}</span>
+                <textarea msd-elastic readonly placeholder="-" ng-model="note.Content"></textarea>
+              </ion-item>
+
+            </ion-list>
+
+           </ion-content>
+        </ion-nav-view>
+      </ion-tab> 
+
+      <!-- Assigned Units -->
+      <ion-tab title="Other Units" icon-on="ion-person-stalker" icon-off="ion-person-stalker">
+        <ion-nav-view name="incident-caller">
+          <ion-content class="has-inc-header" overflow-scroll="true">            
+            <ion-list class="incident-form">            
+              <ion-item class="item-divider">
+                All Units Assigned
+              </ion-item>
+
+              <!--<ion-item class="task-items item-avatar-left" ng-repeat='task in tasks' ng-class="{'task-selected': isTaskShown(task)}" ng-click="toggleTask(task)" >-->
+              <ion-item class="task-items item-avatar-left" ng-repeat="unit in taskUnits">
+                <img style="padding: 2px;" ng-src="{{task.CategoryIcon}}" ng-class="getPriorityClass(task)">
+                <h2> {{unit.UnitId}} - {{unit.UnitName}} </h2>        
+                <p class="tasklist-status">Status: {{unit.ActiveTaskStatusDescription}}</p>        
+              </ion-item>       
+                       
+            </ion-list>        
+           </ion-content>
+        </ion-nav-view>
+      </ion-tab>
+
+    </ion-tabs>
+    </div>
+  </ion-side-menus>
+
+</ion-view>

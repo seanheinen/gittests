@@ -1,0 +1,28 @@
+<ion-view view-title="help">
+  <div class="bar bar-header bar-positive">    
+    <button class="button icon ion-chevron-left nav-buttons" ng-click="$back()"></button>
+    <h1 class="title"> Frequently Asked Questions </h1>
+  </div>  
+  <ion-content class="has-header" overflow-scroll="true">    
+    <ion-list class="faq-list">
+
+      <ion-item class="card" ng-repeat="faq in faqs">
+        <div class="item-divider" style="color:#666">
+          <div class="row">
+            <div class="col" style="white-space: pre-line;">{{faq.question}}</div>
+          </div>
+        </div>
+        <div class="faq-answer">
+          <div class="row">
+            <div class="col col-100">
+              <p ng-repeat="line in faq.answer">                
+                {{line}}
+              </p>
+              </div>
+          </div>
+        </div>
+      </ion-item>      
+
+    </ion-list>
+  </ion-content>
+</ion-view>

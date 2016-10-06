@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta http-equiv="Content-Security-Policy"/>
+
+    <title>Epic Mobile</title>
+
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">     
+      
+    <link href="lib/mfb/mfb.min.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>    
+
+    <!-- cordova script (this will be a 404 during development) -->    
+    <script src="lib/ngcordova/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>    
+
+    <script src="lib/sap/datajs-1.1.2.min.js"></script>
+    <script src="lib/sap/base64.min.js"></script>     
+
+    <!-- applications js -->
+    <script src="js/app.js"></script>    
+    <script src="js/controllers.js"></script>    
+    <script src="js/services.js"></script>
+    <script src="js/controller.splash.js"></script>
+    <script src="js/controller.help.js"></script>    
+    <script src="js/controller.login.js"></script>
+    <script src="js/controller.changepassword.js"></script>
+    <script src="js/controller.settings.js"></script>
+    <script src="js/controller.checkin.js"></script>
+    <script src="js/controller.status.js"></script>
+    <script src="js/controller.tempbase.js"></script>
+    <script src="js/controller.selfstart.js"></script>
+    <script src="js/controller.tasklist.js"></script>
+    <script src="js/controller.offline.js"></script>
+    <script src="js/controller.task.js"></script>  
+    <script src="js/controller.taskview.js"></script>
+    <script src="js/controller.resolution.js"></script>    
+    <script src="js/controller.resync.js"></script>    
+
+    <!-- extras -->
+    <script src="js/templatecache.js"></script>    
+    <script src="lib/mfb/mfb-directive.js"></script>       
+    <script src='lib/elastic/elastic.js'></script>     
+
+    <!--
+    <script src="lib/ngtimer/angular-timer-all.min.js"></script>   
+    <script src="lib/maps/angular-google-maps.min.js"></script>   
+    <script src="lib/maps/lodash.min.js"></script>
+    <script src="lib/maps/angular-simple-logger.min.js"></script>             
+    -->
+
+    <!-- directives js -->    
+    <!--<script src="js/directives/requiredfield.js"></script>-->
+    <!--<script src="js/directives/clearinput.js"></script>-->
+    <script src="js/directives/actionMenu.js"></script>      
+    <script src="js/directives/selectOnClick.js"></script>      
+
+
+    <script src="js/mockData/mockConfiscationUnit.js"></script>       
+<!--    
+    <script src="js/mockData/mockUnitList.js"></script>       
+    <script src="js/mockData/mockStatus.js"></script>       
+    <script src="js/mockData/mockEmployees.js"></script>       
+    <script src="js/mockData/mockVehicles.js"></script>       
+    <script src="js/mockData/mockRelational.js"></script>       
+    <script src="js/mockData/mockTasks.js"></script>       
+    <script src="js/mockData/mockAlerts.js"></script>       
+    <script src="js/mockData/mockCategory.js"></script>       
+    <script src="js/mockData/mockResolutionCode.js"></script>       
+-->
+
+  </head>
+  <body ng-app="epicmobile" ng-controller="AppCtrl">
+    <ion-nav-view></ion-nav-view>                          
+  </body>
+</html>

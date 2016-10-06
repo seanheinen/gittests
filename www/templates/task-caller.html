@@ -1,0 +1,46 @@
+<ion-view view-title="task-details">
+  <ion-content class="has-inc-header" overflow-scroll="true">
+           
+    <ion-list class="task-details-form">
+    
+      <ion-item class="item-divider">
+        Caller Details and Notes
+      </ion-item>
+
+      <ion-item>          
+        <span class="input-label">Firstname</span>
+        <input type="text" readonly placeholder="-" ng-model="task.CallerName" />
+      </ion-item>
+      <ion-item>          
+        <span class="input-label">Surname</span>
+        <input type="text" readonly placeholder="-" ng-model="task.CallerSurname"/>
+      </ion-item>
+      <ion-item>          
+        <span class="input-label">Phone number</span>
+        <input type="text" readonly placeholder="-" ng-model="task.CallerPhoneNo"/>
+      </ion-item>      
+      <ion-item>          
+        <span class="input-label">Alternative Phone number</span>
+        <input type="text" readonly placeholder="-" ng-model="task.CallerAltPhoneNo"/>
+      </ion-item>      
+      <ion-item>          
+        <span class="input-label">Street Number</span>
+        <input type="text" readonly placeholder="-" ng-model="task.CallerStreetNo"/>
+      </ion-item>
+      <ion-item>          
+        <span class="input-label">Street</span>
+        <input type="text" readonly placeholder="-" ng-model="task.CallerStreet" />
+      </ion-item>      
+      <ion-item>          
+        <span class="input-label">Suburb</span>
+        <input type="text" readonly placeholder="-" ng-model="task.CallerSuburb" />
+      </ion-item>
+      <ion-item ng-repeat="header in renderNotes">          
+        <span class="input-label">{{header.header}}</span>
+        <textarea ng-repeat="note in header.notes" msd-elastic readonly placeholder="-" ng-model="note" ></textarea>
+      </ion-item>
+
+    </ion-list>
+
+   </ion-content>
+</ion-view>

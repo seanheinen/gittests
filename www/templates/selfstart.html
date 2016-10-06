@@ -1,0 +1,147 @@
+<ion-view view-title="Selfstart" cache-view="false">
+  <ion-side-menus>
+
+    <!-- Left menu -->
+    <ion-side-menu side="left" class="left-side-menu" ng-controller="epic-sidemenu">
+      <ng-include src="sidemenuMarkup"></ng-include>
+    </ion-side-menu>
+
+    <!-- Main content, usually <ion-nav-view> -->
+    <ion-side-menu-content>  
+
+      <ion-pane>
+
+        <ion-header-bar class="bar-positive" align-title="center">
+          <a class="button button-icon icon ion-navicon" menu-toggle="left"></a>
+          <div class="h1 title">Self Start</div>
+        </ion-header-bar>
+
+        <ion-content class="has-footer" overflow-scroll="true">
+                 
+          <ion-list class="task-details-form">
+
+            <div class="item item-divider">
+              Task Details
+            </div>
+
+
+            <ion-list class="closure-additional-list">                
+              <ion-item class="card">    
+                
+                <div>
+                  <div class="row">
+                    <div class="col">Unit</div>                  
+                  </div>
+                  <div class="row">
+                    <div class="col col-30">
+                      <input type="text" placeholder="-" ng-model="selfstart.unit" readonly>
+                    </div>
+                    <div class="col col-70">
+                      <input type="text" placeholder="-" ng-model="selfstart.unitName" readonly>
+                    </div>
+                  </div>
+                </div>      
+
+                <div>
+                  <div class="row">
+                    <div class="col">Location</div>                  
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" placeholder="-" select-on-click ng-model="selfstart.location">
+                    </div>
+                  </div>
+                </div>      
+
+                <div>
+                  <div class="row">
+                    <div class="col">Additional Location</div>                  
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" placeholder="-" select-on-click ng-model="selfstart.location2">
+                    </div>
+                  </div>
+                </div>      
+                            
+                <div>
+                  <div class="row">
+                    <div class="col">Street Number</div>                  
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" placeholder="-" select-on-click ng-model="selfstart.streetNumber">                      
+                    </div>
+                  </div>
+                </div>      
+
+                <div>
+                  <div class="row">
+                    <div class="col">Street</div>                  
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" placeholder="-" select-on-click ng-model="selfstart.street">                      
+                    </div>
+                  </div>
+                </div>      
+              
+                <div>
+                  <div class="row">
+                    <div class="col">Suburb</div>                  
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" placeholder="-" select-on-click ng-model="selfstart.suburb">
+                    </div>
+                  </div>
+                </div>      
+
+                <div>
+                  <div class="row">
+                    <div class="col">Town</div>                  
+                  </div>
+                  <div class="row">
+                    <div class="col">
+                      <input type="text" placeholder="-" select-on-click ng-model="selfstart.town">
+                    </div>
+                  </div>
+                </div>     
+
+                <div>
+                  <div class="row">
+                    <div class="col">Geolocation</div>                  
+                  </div>
+                  <div class="row">                    
+                    <div class="col col-50">
+                      <input type="text" placeholder="-" ng-model="selfstart.geox" readonly>                    
+                    </div>
+                    <div class="col col-50">                      
+                      <input type="text" placeholder="-" ng-model="selfstart.geoy" readonly>
+                    </div>
+                  </div>
+                </div>  
+                <div>
+                  <div class="row">                  
+                    <div class="col">
+                      <button class="button icon ion-ios-location button-block button-positive set-geolocation" ng-click="getGeolocation()">  Update Geolocation</button>
+                    </div>
+                  </div>                    
+                </div>                    
+
+              </ion-item>
+
+            </ion-list>          
+
+         </ion-content>
+
+        <div class="bar bar-footer">    
+          <button class="button icon ion-checkmark-circled button-block button-positive" ng-click="submit()" style="width:100%; margin-top:0px; margin-bottom:0px;">  Submit</button>    
+        </div>         
+
+      </ion-pane>
+
+    </ion-side-menu-content>
+  </ion-side-menus>
+
+</ion-view>

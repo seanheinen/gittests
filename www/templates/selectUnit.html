@@ -1,0 +1,31 @@
+<ion-modal-view>
+  <div class="bar bar-header bar-positive">        
+    <h1 class="title"> Select Unit</h1>
+  </div>
+  
+  <ion-content class="has-header" overflow-scroll="true">    
+    <ion-list>
+
+     <ion-item class="item item-icon-left task-status-list" ng-class="{ 'unit-past': unit.validity==='past', 'unit-present': unit.validity==='present', 'unit-future': unit.validity==='future' }" ng-repeat="unit in unitList" ng-click="selectUnit(unit);">
+      <i class="icon ion-android-car"></i>      
+      <h2><strong>{{unit.UnitID}}: {{unit.UnitType}} - {{unit.UnitName}}</strong></h2>
+      <h2><strong>Unit Status: {{unit.StatusName}}</strong></h2>
+      <p>{{unit.DistrictName}}, {{unit.BaseName}}</p>
+      <p><strong>Valid From:</strong> {{unit.FromDate}} - {{unit.FromTime}}</p>
+      <p><strong>Valid To: </strong>{{unit.ToDate}}, {{unit.ToTime}}</p>
+     </ion-item>    
+     
+    </ion-list>
+  </ion-content>
+</ion-modal-view>
+
+
+
+
+
+
+
+
+
+
+

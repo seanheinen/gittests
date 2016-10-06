@@ -1,0 +1,93 @@
+<ion-view view-title="ManageOffline" cache-view="false">
+  <ion-side-menus>
+    
+    <!-- Left menu -->
+    <ion-side-menu side="left" class="left-side-menu" ng-controller="epic-sidemenu">
+
+      <ng-include src="sidemenuMarkup"></ng-include>
+
+    </ion-side-menu>
+
+
+    <!-- Main content, usually <ion-nav-view> -->
+    <ion-side-menu-content>  
+
+      <div id="offline-page">
+        <ion-pane>
+
+          <!-- floating action menu start -->      
+          <nav mfb-menu            
+            id="floating-action"              
+            position="br" 
+            effect="slidein-spring" 
+            label="Collapse"
+            active-icon="ion-minus-round" 
+            resting-icon="ion-plus-round"
+            toggling-method="click"
+            style="margin-bottom: 20px;"
+            template-url="ng-mfb-upload.tpl.html"
+            main-action="uploadSelection()">
+            
+          </nav>
+          <!-- floating action menu end -->
+          <ion-header-bar class="bar-positive" align-title="center">
+            <a class="button button-icon icon ion-navicon" menu-toggle="left"></a>
+            <div class="h1 title">Offline</div>
+            <div class="manage-offline-selectall-container">
+              <ion-checkbox 
+                class="item-checkbox-right" 
+                ng-checked="true"
+                ng-model="selectAll"
+                ng-init="selectAll=true"
+                ng-change="selectAllToggle(selectAll)"></ion-checkbox>
+            </div>
+          </ion-header-bar>
+
+          <ion-content class="has-header" overflow-scroll="false" cta>
+            
+          <!-- loader 
+          <div ng-show="refreshList === true">-->
+            <div class="list-loader" ng-class="{ 'on': refreshList }">
+            
+              <div class="refresh-text">
+                <div style="text-align: center;">                  
+                  <div><ion-spinner icon="dots"></ion-spinner></div>
+                </div>
+                <!--<ion-spinner></ion-spinner> -->
+              </div>
+              <!-- loader -->
+
+              <!-- no tasks - phone -->                          
+              <div ng-show="transactions.length < 1" class="no-offline-transactions">                                  
+                <img src="img/upload-item-illu.jpg" width="200px" height="200px">
+                <h3>Upload list empty</h3>
+                <h5>There are no files or transactions to send.</h5>
+              </div>
+
+              <ion-list overflow-scroll="false">  
+                                
+                <ion-checkbox 
+                  class="item item-icon-left item-checkbox-right manage-offline-checkbox"
+                  ng-repeat="transaction in transactions" 
+                  ng-checked="true" 
+                  ng-init="transaction.selected=true"
+                  ng-model="transaction.selected"                  
+                  ng-click="viewOfflineTrans(transaction);">
+
+                  <i style="color:#4C6591;" class="icon" ng-class="getTypeIcon(transaction.Type)"></i>
+                  <h2>{{ transaction.Type }}</h2>
+                  <p style="width:75%;"> {{ transaction.TimeStamp }} </p>
+                </ion-checkbox>
+                  
+              </ion-list>
+            </div>
+          </ion-content>
+        </ion-pane>
+      </div>
+
+    </ion-side-menu-content>
+
+  </ion-side-menus>
+
+</ion-view>
+

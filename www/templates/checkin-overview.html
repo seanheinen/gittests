@@ -1,0 +1,66 @@
+<ion-view view-title="checkin-overview">
+  <ion-content class="has-footer" overflow-scroll="true" header-shrink>
+    <div class="item item-divider">
+      Unit Overview
+    </div>
+
+    <ion-list class="checkin-overview-list">     
+      <ion-item>          
+          <span class="input-label">Unit ID</span>
+          <span class="checkin-overview-value">{{unitData.unitId}}</span> 
+      </ion-item>
+      <ion-item>          
+          <span class="input-label">Unit Name</span>
+          <span class="checkin-overview-value">{{unitData.unitname}}</span> 
+      </ion-item>
+      <ion-item>          
+          <span class="input-label">Unit Type</span>
+          <span style="font-size:13px;">{{unitData.unittype}}</span> 
+      </ion-item>
+      <ion-item>          
+          <span class="input-label">Unit Description</span>
+          <span class="checkin-overview-value">{{unitData.description}}</span> 
+      </ion-item>
+      <ion-item class="item-icon-right">
+          <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>           
+          <span class="input-label">Directorate</span>
+          <span class="checkin-overview-value">{{directorate}}</span> 
+      </ion-item>            
+      <!--<ion-item class="item-icon-right" ng-click="selectDepartment(department)">-->
+      <ion-item class="item-icon-right">
+          <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>           
+          <span class="input-label">Department</span>
+          <span class="checkin-overview-value">{{department}}</span> 
+      </ion-item>            
+      <!--<ion-item class="item-icon-right" ng-click="selectSection()">-->    
+      <ion-item class="item-icon-right">    
+          <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>       
+          <span class="input-label">Section</span>
+          <span class="checkin-overview-value">{{section}}</span> 
+      </ion-item>
+      <!--<ion-item class="item-icon-right" ng-click="selectSubSection()">--> 
+      <ion-item class="item-icon-right"> 
+          <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>          
+          <span class="input-label">SubSection</span>
+          <span class="checkin-overview-value">{{subsection}}</span> 
+      </ion-item>
+      <!--<ion-item class="item-icon-right" ng-click="selectDistrict()"> -->
+      <ion-item class="item-icon-right"> 
+          <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>          
+          <span class="input-label">District</span>
+          <span class="checkin-overview-value">{{district}}</span> 
+      </ion-item>
+      <!--<ion-item class="item-icon-right" ng-click="selectBase()">-->    
+      <ion-item class="item-icon-right">    
+          <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>       
+          <span class="input-label">Base</span>
+          <span class="checkin-overview-value">{{base}}</span> 
+      </ion-item>      
+      <ion-item class="item-icon-right" ng-show="tempbase.length > 0">    
+        <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>       
+        <span class="input-label">Temporary Base</span>
+        <span class="checkin-overview-value">{{tempbase}}</span> 
+      </ion-item>      
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,26 @@
+<ion-view view-title="settings">
+  <div class="bar bar-header bar-positive">    
+    <button class="button icon ion-chevron-left nav-buttons" ng-click="$back()"></button>
+    <h1 class="title"> Server Configuration </h1>
+  </div>  
+  <ion-content class="has-header" overflow-scroll="true">    
+    <ion-list class="checkin-overview-list">     
+      <ion-item>          
+          <span class="input-label">Server Host</span>
+          <span class="checkin-overview-value">{{serverConfig.serverHost}}</span> 
+      </ion-item>
+      <ion-item>          
+          <span class="input-label">Port</span>
+          <span class="checkin-overview-value">{{serverConfig.serverPort}}</span> 
+      </ion-item>
+      <ion-item>          
+          <span class="input-label">Secure Communication</span>
+          <span style="font-size:13px;">{{serverConfig.https}}</span> 
+      </ion-item>
+      <ion-item>          
+          <span class="input-label">Communicator ID</span>
+          <span class="checkin-overview-value">{{serverConfig.communicatorId}}</span> 
+      </ion-item>      
+    </ion-list>
+  </ion-content>
+</ion-view> 

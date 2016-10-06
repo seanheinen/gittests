@@ -1,0 +1,101 @@
+<ion-view view-title="login" animation="no-animation" cache-view="false">
+
+<ion-side-menus>
+
+    <!-- Left menu -->
+    <ion-side-menu side="left" class="left-side-menu">
+
+      <ion-header-bar class="bar bar-positive">
+        <div class="button-bar ">
+          <button class="button icon ion-wifi button-clear" ng-class="networkStatusClass"> {{ networkStatus }} </button>                        
+        </div>
+      </ion-header-bar>
+      
+      <ion-content>
+        
+        <ion-list>
+
+          <ion-item class="item item-icon-left" ng-click="goHelp()">
+            <i class="icon ion-help"></i>
+            Help
+          </ion-item>            
+
+          <ion-item class="item item-icon-left" ng-click="goSettings()">
+            <i class="icon ion-android-settings"></i>
+            Server settings            
+          </ion-item> 
+
+          <!--
+          <ion-item class="item item-icon-left" ng-click="goClearCache()">
+            <i class="icon ion-briefcase"></i>
+            Clear Cache
+          </ion-item> 
+          -->
+          
+          <ion-item class="item item-icon-left" ng-click="goExit()">
+            <i class="icon ion-power"></i>
+            Exit
+          </ion-item> 
+
+        </ion-list>
+      </ion-content>      
+
+    </ion-side-menu>
+
+    <!-- Main content, usually <ion-nav-view> -->
+    <ion-side-menu-content>  
+
+      <ion-pane class="login-page" style="-webkit-backface-visibility: hidden;">
+
+        <ion-header-bar class="bar-positive login-settings" align-title="center">
+          <a class="button button-icon icon ion-android-settings" menu-toggle="left"></a>            
+        </ion-header-bar>
+
+        <div class="login-grad">
+          <ion-content class="padding" overflow-scroll="true" style="top: 0px">
+          
+            <div class="login-header"></div>    
+
+            <ion-list class="card">
+              <ion-item>
+                <label>
+                  <input type="text" select-on-click placeholder="Username" ng-model="credenitals.username">
+                </label>
+              </ion-item>
+              <ion-item style="margin-bottom: 0.5em;">
+                <label>
+                  <input placeholder="Password" type="{{inputType}}" ng-model="credenitals.password">
+                </label>                
+              </ion-item>
+              <ion-item class="show-password-item">              
+                <ion-checkbox 
+                  class="show-password"                
+                  ng-model="showpassword" 
+                  ng-click="hideShowPassword()"
+                  ng-checked="false">
+                  
+                  <h2>Show Password</h2>                
+                </ion-checkbox>
+              </ion-item>
+
+              <button class="button button-block button-balanced" ng-click="doLogin()">Login</button>                     
+
+              <!--
+              <ion-item class="change-password-item">              
+                <a ng-click="changePassword()">Change Password</a>                     
+              </ion-item>
+              -->
+
+            </ion-list>      
+          </ion-content>    
+        </div>
+      </ion-pane>
+
+    </ion-side-menu-content>
+
+  </ion-side-menus>  
+</ion-view>
+
+
+
+

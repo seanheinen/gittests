@@ -1,0 +1,249 @@
+<ion-view view-title="task-form">
+  <ion-content class="has-inc-header short-form" overflow-scroll="true">
+
+   
+    <!-- IF NOT INCIDENT COMMANDER -->
+    <div ng-show="checkIncidentRole()"" class="no-tasks placeholder-image">           
+      <img src="img/list-item-illu.jpg" width="100px" height="100px">
+      <h3>You are not the Incident Commander</h3>
+      <h5>Only the Incident Commander can complete Closure Forms.</h5>
+    </div>
+    </div>
+ 
+
+    <div ng-show="!checkIncidentRole()">
+      <!-- FIRE AND RESCUE SHORT FORM -->
+      <div ng-show="displayFireForm()">     
+        <div class="item item-divider">
+          Fire and Rescue short form
+        </div>      
+        <ion-list class="closure-additional-list">       
+
+          <ion-item class="card" style="padding-left:0px;padding-right:0px">
+            <div class="item-divider">
+              <div class="row">
+                <div class="col">Comments</div>
+              </div>
+            </div>
+            <div class="">
+              <div class="row">
+                <textarea rows="10" ng-model="fireForm.comment"></textarea>
+              </div>
+            </div>
+          </ion-item>        
+        </ion-list>
+      </div>
+
+
+      <!-- POLICING SHORT FORM -->    
+      <div ng-show="displayPoliceForm()">     
+        <div class="item item-divider">
+          Policing short form
+        </div>
+        <ion-list class="closure-additional-list">                        
+
+          <ion-item class="card">    
+            <div class="item-divider">
+              <div class="row">
+                <div class="col col-75">Number of people affected / involved?</div>
+                <div class="col">
+                  <input type="number" placeholder="-" ng-model="policeForm.people">
+                </div>
+              </div>
+            </div>      
+          </ion-item>
+
+          <ion-item class="card">    
+            <div class="item-divider">
+              <div class="row">
+                <div class="col col-75">Number of arrests?</div>
+                <div class="col">
+                  <input type="number" placeholder="-" ng-model="policeForm.arrests">
+                </div>
+              </div>
+            </div>      
+          </ion-item>
+
+          <ion-item class="card">    
+            <div class="item-divider">
+              <div class="row">
+                <div class="col col-75">Number of contravention notices issued?</div>
+                <div class="col">
+                  <input type="number" placeholder="-" ng-model="policeForm.contraventions">
+                </div>
+              </div>
+            </div>      
+          </ion-item>
+
+          <ion-item class="card">    
+            <div class="item-divider">
+              <div class="row">
+                <div class="col col-75">Number of fines issued?</div>
+                <div class="col">
+                  <input type="number" placeholder="-" ng-model="policeForm.fines">
+                </div>
+              </div>
+            </div>      
+          </ion-item>        
+
+          <ion-item class="card">    
+            <div class="item-divider">
+              <div class="row">
+                <div class="col col-75">Number of vehicles towed / impounded?</div>
+                <div class="col">
+                  <input type="number" placeholder="-" ng-model="policeForm.vehicles">
+                </div>
+              </div>
+            </div>      
+          </ion-item>        
+
+          <ion-item class="card" style="padding-left:0px;padding-right:0px">
+            <div class="item-divider">
+              <div class="row">
+                <div class="col col-50">Confiscations</div>              
+              </div>
+            </div>
+
+            <div class="form-line-items" ng-repeat="confiscation in policeForm.confiscations">
+              <div class="row">              
+                <div class="col col-60">
+                  <ion-checkbox ng-model="confiscation.confiscated">                  
+                  </ion-checkbox>
+                  <input class="form-line-description" type="text" placeholder="-" ng-model="confiscation.description">
+                </div>
+                <div class="col col-20 form-line-item">
+                  <input type="number" placeholder="-" ng-model="confiscation.quantity">
+                </div>
+                <div class="col col-20 form-line-item">
+                  <input class="confiscations-unit" type="text" ng-model="confiscation.unit" ng-click="changeConfiscationUnit(confiscation)" readonly="true">
+                </div>
+              </div>
+            </div>
+
+            <div style="display:none;">
+              <div class="row">
+                <button class="button icon icon-right ion-plus-round button-block button-positive" ng-click="addConfiscation()">Add Confiscation</button>              
+              </div>
+            </div>
+
+          </ion-item>
+          
+        </ion-list>
+      </div>
+
+
+      <!-- DRM SHORT FORM -->    
+      <div ng-show="displayDRMForm()">     
+        <div class="item item-divider">
+          Disaster Risk Management short form
+        </div>
+        <ion-list class="closure-additional-list">                
+          <ion-item class="card">    
+            <div class="item-divider">
+              <div class="row">
+                <div class="col col-75">Number of structures involved?</div>
+                <div class="col">
+                  <input type="number" placeholder="-" ng-model="drmForm.structures">
+                </div>
+              </div>
+            </div>      
+          </ion-item>
+          <ion-item class="card">    
+            <div class="item-divider">
+              <div class="row">
+                <div class="col col-75">Number of people affected / involved?</div>
+                <div class="col">
+                  <input type="number" readonly placeholder="-" ng-model="drmForm.people">
+                </div>
+              </div>
+            </div>      
+          </ion-item>
+          <ion-item class="card" style="padding-left:0px;padding-right:0px">
+            <div class="item-divider">
+              <div class="row">
+                <div class="col col-50">Gender total</div>
+                <div class="col"><input readonly type="number" placeholder="Male" ng-model="drmForm.males" style="font-weight:bold;"></div>
+                <div class="col"><input readonly type="number" placeholder="Female" ng-model="drmForm.females" style="font-weight:bold;"></div>
+              </div>
+            </div>
+            <div class="">
+              <div class="row">
+                <div class="col col-50">Adults (>18 yrs)</div>
+                <div class="col"><input type="number" placeholder="Male" ng-model="drmForm.maleAdults"></div>
+                <div class="col"><input type="number" placeholder="Female" ng-model="drmForm.femaleAdults"></div>
+              </div>
+            </div>
+            <div class="">
+              <div class="row">
+                <div class="col col-50">Children (3 - 18 yrs)</div>
+                <div class="col"><input type="number" placeholder="Male" ng-model="drmForm.maleChildren"></div>
+                <div class="col"><input type="number" placeholder="Female" ng-model="drmForm.femaleChildren"></div>
+              </div>
+            </div>
+            <div class="">
+              <div class="row">
+                <div class="col col-50">Infants (1 - 3 yrs)</div>
+                <div class="col"><input type="number" placeholder="Male" ng-model="drmForm.maleInfants"></div>
+                <div class="col"><input type="number" placeholder="Female" ng-model="drmForm.femaleInfants"></div>
+              </div>
+            </div>
+          </ion-item>
+          <ion-item class="card">    
+            <div class="item-divider">
+              <div class="row">
+                <div class="col col-75">Number of fatalities?</div>
+                <div class="col">
+                  <input type="number" placeholder="-" ng-model="drmForm.dead">
+                </div>
+              </div>
+            </div>      
+          </ion-item>        
+          <ion-item class="card">    
+            <div class="item-divider">
+              <div class="row">              
+                <div class="col">                
+                  <ion-checkbox style="background-color: transparent;" ng-model="drmForm.relief">Relief required?</ion-checkbox>        
+                </div>        
+              </div>        
+            </div>   
+
+            <div ng-show="drmForm.relief">                            
+                <div class="">
+                  <div class="row">              
+                    <div class="col col-80">                    
+                      How many days of meal relief is required?                    
+                    </div>                  
+                    <div class="col col-20 form-line-item">
+                      <input type="number" placeholder="-" ng-model="drmForm.reliefDays">
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-line-items" ng-repeat="item in drmForm.reliefItems">
+                  <div class="row">              
+                    <div class="col col-80">
+                      <ion-checkbox ng-checked="false" ng-model="item.needed">                      
+                      </ion-checkbox>
+                      <input class="form-line-description" type="text" placeholder="-" ng-model="item.description">
+                    </div>                  
+                    <div class="col col-20 form-line-item">                
+                      <input type="number" placeholder="-" ng-model="item.quantity">
+                    </div>
+                  </div>
+                </div>
+
+                <div style="display:none;">
+                  <div class="row">
+                    <button class="button icon icon-right ion-plus-round button-block button-positive" ng-click="addRelief()">Add Relief Item</button>              
+                  </div>
+                </div>
+
+            </div>           
+          </ion-item>    
+          
+        </ion-list>
+      </div>
+    </div>
+
+   </ion-content>
+</ion-view>

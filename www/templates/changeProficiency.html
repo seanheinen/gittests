@@ -1,0 +1,27 @@
+
+<ion-modal-view>
+  <div class="bar bar-header bar-positive">        
+    <h1 class="title"> Select Profiecency </h1>
+  </div>
+  
+  <ion-content class="has-header" overflow-scroll="true">    
+    <ion-list>
+             
+      <ion-item ng-repeat="proficiency in unitProficiencies" ng-click="SetProficiency(proficiency.Id, proficiency.Description)">
+        <span class="input-label">{{proficiency.Description}}</span>        
+      </ion-item>      
+
+    </ion-list>
+  </ion-content>
+</ion-modal-view> 
+
+<!--
+
+    <ion-list>
+             
+      <ion-item ng-repeat="proficiency in unitProficiencies" ng-click="SetProficiency(proficiency.Id, proficiency.Description)">
+        <span class="input-label">{{proficiency.Description}}</span>        
+      </ion-item>      
+
+    </ion-list>
+  -->

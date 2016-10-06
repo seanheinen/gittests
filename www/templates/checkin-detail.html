@@ -1,0 +1,43 @@
+<ion-view view-title="checkin-detail">
+  <ion-content class="has-footer" overflow-scroll="true" cta>
+    <div class="item item-divider">
+      Unit Employees / Vehicles
+    </div>
+
+    <ion-list class="unit-detail-list">
+
+     <ion-item class="item-thumbnail-left item-button-right item-right-botton-fix" style="padding-right:100px;" ng-repeat="person in unitEmployees" ng-click="viewPerson(person);">
+       <img ng-src="{{ getUnitEmployeePhoto(person) }}" class="checkin-details-list-avatars" style="padding:15px"/>         
+       <h2 style="font-size:14px;">{{person.LastName}}, {{person.FirstName}}</h2>
+       <p style="font-size:12px;">{{person.DistrictName}}, {{person.BaseName}}</p>     
+       <p style="font-style: italic; font-weight: bold; color: #556D97;">{{person.proficiency}}</p>     
+       <button style="right:47px;" ng-disabled="!checkRole()" class="button icon ion-ios-cog dark-blue-but" ng-click="changeProficiency(person); $event.stopPropagation();"></button>
+       <button style="right:5px;" ng-disabled="!checkRole()" class="button icon ion-trash-a dark-blue-but" ng-click="removeEmployee($index, person); $event.stopPropagation();" ng-hide="person.Partner === userDetails.Partner"></button>
+     </ion-item>
+       
+     <ion-item class="item-thumbnail-left item-button-right item-right-botton-fix" style="padding-right:80px;" ng-repeat="vehicle in unitVehicles" ng-click="viewVehicle(vehicle);">
+       <img ng-src="{{ vehicle.Photo.length && vehicle.Photo.length || 'img/search-vehicle-icon.svg'}}" class="checkin-details-list-avatars" style="padding:15px">         
+       <h2 style="font-size:14px;">{{vehicle.RegNum}} - {{vehicle.VehicleType}}</h2>         
+       <p style="font-size:12px;">{{vehicle.DistrictName}}, {{vehicle.BaseName}}</p>         
+       <button style="right:5px;" ng-disabled="!checkRole()" class="button icon ion-trash-a dark-blue-but" ng-click="removeVehicle($index, vehicle); $event.stopPropagation();"></button>         
+     </ion-item>
+
+    </ion-list>
+  </ion-content>
+
+  <!-- floating action menu start -->
+  <nav ng-show="checkRole()" id="floating-action" 
+    mfb-menu position="br" 
+    effect="slidein-spring" 
+    label="Collapse"
+    active-icon="ion-minus-round" 
+    resting-icon="ion-plus-round"
+    toggling-method="click"
+    style="margin-bottom: 50px;">
+
+    <button mfb-button mfb-button-close icon="ion-person" label="Add Employee" ng-click="searchEmployee();"></button>
+    <button mfb-button mfb-button-close icon="ion-model-s" label="Add Vehicle" ng-click="searchVehicle();"></button>        
+  </nav>
+  <!-- floating action menu end -->
+
+</ion-view>

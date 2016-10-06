@@ -1,0 +1,55 @@
+<ion-view view-title="checkin" cache-view="false">
+
+  <ion-side-menus>
+
+    <!-- Left menu -->
+    <ion-side-menu side="left" class="left-side-menu" ng-controller="epic-sidemenu">
+
+      <ng-include src="sidemenuMarkup"></ng-include>
+
+    </ion-side-menu>
+
+    <!-- Main content, usually <ion-nav-view> -->
+    <ion-side-menu-content>  
+
+      <ion-header-bar class="bar-positive" align-title="center">
+        <a class="button button-icon icon ion-navicon" menu-toggle="left"></a>
+        <div class="h1 title">Unit Checkin</div>
+      </ion-header-bar>
+      
+      <ion-tabs class="tabs-positive tabs-striped tabs-top tabs-icon-top"> 
+
+        <!-- Overview Tab -->
+        <ion-tab title="Overview" icon-on="ion-ios-information" icon-off="ion-ios-information-outline" class="border-color1" href="#/checkin/overview">
+          <ion-nav-view name="checkin-overview"></ion-nav-view>
+        </ion-tab>
+
+        <!-- Detail Tab -->
+        <ion-tab title="Detail" icon-on="ion-person-stalker" icon-off="ion-person-stalker" class="border-color1" href="#/checkin/detail">
+          <ion-nav-view name="checkin-detail"></ion-nav-view>
+        </ion-tab>
+
+        <!-- Proficiencies Tab -->        
+        <ion-tab title="Proficiencies" icon-on="ion-ios-cog" icon-off="ion-ios-cog" class="border-color1" href="#/checkin/proficiencies">
+          <ion-nav-view name="checkin-proficiencies"></ion-nav-view>
+        </ion-tab>        
+
+      </ion-tabs>
+
+      <div class="bar bar-footer">
+        <div class="button-bar">
+          <a class="button button-stable" ng-show="$state.includes('checkin.overview')" ng-click="Logout();">Logout</a>
+          <a class="button button-stable" ng-show="!$state.includes('checkin.overview')" ng-click="Back();">Back</a>
+          
+          <a class="button button-positive" ng-show="!$state.includes('checkin.proficiencies')" ng-click="Next();">Next</a>
+          <a class="button button-positive" ng-show="$state.includes('checkin.proficiencies')" ng-click="Submit();">Done</a>
+        </div>
+      </div>
+
+    </ion-side-menu-content>
+
+  </ion-side-menus>  
+
+</ion-view>
+
+

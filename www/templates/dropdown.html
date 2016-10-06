@@ -1,0 +1,24 @@
+<ion-view view-title="dropdown" cache-view="false">
+  <div class="bar bar-header bar-positive">    
+    <button class="button icon ion-chevron-left nav-buttons" ng-click="$back()"></button>
+    <h1 class="title"> {{dropdownTitle}} </h1>
+  </div>
+  <div class="bar bar-subheader item-input-inset bar-positive no-padding ">
+    <div class="list list-inset checkin-searchbox">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="Search" ng-model="dropdownInput">
+      </label>
+    </div>
+  </div>
+  <ion-content class="has-header has-subheader" overflow-scroll="true">    
+    <ion-list>
+      <ion-item ng-repeat="item in dropdownScope | filter:searchFilter | limitTo:20" ng-click="dropdownClick(item)" ng-hide="resultTemplate.length">        
+        <span>{{ item[displayField] }}</span>      
+      </ion-item>
+
+      <ion-item class="item-avatar-left" ng-repeat="item in dropdownScope | filter:searchFilter | limitTo:20"" ng-include="resultTemplate" ng-show="resultTemplate.length" ng-click="dropdownClick(item)">
+
+    </ion-list>
+  </ion-content>
+</ion-view>

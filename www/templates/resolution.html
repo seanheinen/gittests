@@ -1,0 +1,72 @@
+<ion-view view-title="closure-resolution" cache-view="false">
+
+  <ion-header-bar class="bar-positive" align-title="center">
+      <button class="button icon ion-chevron-left nav-buttons" ng-click="exitResolution()"></button>
+      <h1 class="title">Task Resolution</h1>              
+  </ion-header-bar>
+
+  <ion-content class="has-footer" overflow-scroll="true">
+    <div class="item item-divider">
+      Resolution Details
+    </div>
+
+    <ion-list class="closure-resolution-list">     
+
+      <ion-item class="item-icon-right" ng-click="selectCategoryA()">
+          <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>           
+          <span class="input-label">Category A</span>
+          
+          <input type="text" readonly placeholder="-" ng-model="resolution.CategoryLab1" />
+      </ion-item>
+
+      <ion-item class="item-icon-right" ng-click="selectCategoryB()">
+          <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>           
+          <span class="input-label">Category B</span>
+          
+          <input type="text" readonly placeholder="-" ng-model="resolution.CategoryLab2" />
+      </ion-item>
+
+      <ion-item class="item-icon-right" ng-click="selectCategoryC()">
+          <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>           
+          <span class="input-label">Category C</span>
+          
+          <input type="text" readonly placeholder="-" ng-model="resolution.CategoryLab3" />
+      </ion-item>
+
+      <ion-item class="item-icon-right" ng-click="selectCategoryD()">
+          <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>           
+          <span class="input-label">Category D</span>
+          
+          <input type="text" readonly placeholder="-" ng-model="resolution.CategoryLab4" />
+      </ion-item>                  
+
+      
+      <ion-item class="item-icon-right" ng-click="selectResolutionCode()">
+          <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>           
+          <span class="input-label">Resolution Code</span>
+          
+          <input type="text" readonly placeholder="-" ng-model="resolution.ResolutionDescription" />
+      </ion-item>                  
+
+      <ion-item class="item-icon-right" ng-click="selectResponsible()">
+          <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>           
+          <span class="input-label">Allocate Responsibility</span>
+          
+          <input type="text" readonly placeholder="-" ng-model="resolution.allocatedEmployeeDisplay" />
+      </ion-item>                  
+
+      <ion-item class="item item-input item-stacked-label item-icon-right">         
+        <span class="input-label">Resolution Comments</span>
+        <textarea msd-elastic placeholder="-" select-on-click ng-model="resolution.ResolutionComments"></textarea>
+        
+      </ion-item>
+
+    </ion-list>
+
+  </ion-content>
+
+  <div class="bar bar-footer">    
+    <button class="button icon ion-checkmark-circled button-block button-positive" ng-click="submit()" style="width:100%; margin-top:0px; margin-bottom:0px;">  Submit</button>    
+  </div>
+
+</ion-view>

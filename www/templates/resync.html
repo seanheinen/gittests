@@ -1,0 +1,39 @@
+<ion-view view-title="Resync" cache-view="false">
+	<ion-content overflow-scroll="true" class="prepare-app-bg">
+		<div class="resync-app">
+
+		  	<div class="resync-status">{{sendingStatus}}</div>
+		  	<div ng-show='(sendTotal !== 0 && sentCount !== sendTotal) && !stopSendFlag'>
+		  		<ion-spinner icon="dots"></ion-spinner>
+		  	</div>
+		  	<i 
+		  		ng-show='(sendTotal === 0 || sentCount === sendTotal) || stopSendFlag' 
+		  		ng-class="{'ion-checkmark-circled': !stopSendFlag, 'ion-close-circled':stopSendFlag}"
+		  		class="icon">
+		  	</i>
+
+		  	<div class="resync-status">{{retrievingStatus}}</div>
+		  	<div ng-show='(retrieveCount !== retrieveTotal) && !stopRecieveFlag'>
+		  		<ion-spinner icon="dots"></ion-spinner>
+		  	</div>
+		  	<i 
+			  	ng-show='(retrieveCount === retrieveTotal) || stopRecieveFlag' 
+			  	ng-class="{'ion-checkmark-circled': !stopRecieveFlag, 'ion-close-circled':stopRecieveFlag}"
+			  	class="icon">
+		  	</i>
+			
+			<ng-include class="resync-status" ng-show="Error.length > 0" src="Error"></ng-include>
+
+		  	<div>
+			  	<button
+			  		ng-show='(retrieveCount === retrieveTotal) && (sendTotal === 0 || sentCount === sendTotal)'
+			  		class="button icon-left ion-checkmark-circled button-balanced" ng-click="complete();">Done</button>
+				
+				<button
+			  		ng-show='stopSendFlag || stopRecieveFlag'
+			  		class="button icon-left ion-checkmark-circled error-button" ng-click="complete();">Close</button>
+			  		
+			</div>
+	  </div>
+  </ion-content>
+</ion-view>

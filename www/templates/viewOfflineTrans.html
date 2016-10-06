@@ -1,0 +1,24 @@
+
+<ion-list class="offline-transaction">
+         
+  <ion-item>
+    <span class="input-label">Trans ID</span>
+    <span class="checkin-overview-value">{{selectedTrans.TransId}}</span>       
+  </ion-item>      
+    <ion-item>
+    <span class="input-label">Type</span>
+    <span class="checkin-overview-value">{{selectedTrans.Type}}</span>             
+  </ion-item>      
+  <ion-item>      
+    <span class="input-label">Date and Time</span>
+    <span class="checkin-overview-value">{{selectedTrans.Date}} - {{selectedTrans.Time}}</span>                 
+  </ion-item>      
+  <ion-item>
+    <span class="input-label">Geolocation</span>
+    <span class="checkin-overview-value">{{selectedTrans.Geolocation}}</span>             
+  </ion-item>      
+  <ion-item>      
+    <span class="input-label">Payload</span>
+    <span class="checkin-overview-value" style="white-space:normal;">{{selectedTrans.Payload}}</span>           
+  </ion-item>      
+</ion-list>

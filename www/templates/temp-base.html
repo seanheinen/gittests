@@ -1,0 +1,81 @@
+<ion-view view-title="temp-base" cache-view="false">
+
+  <ion-header-bar class="bar-positive" align-title="center">
+      <button class="button icon ion-chevron-left nav-buttons" ng-click="$back()"></button>
+      <h1 class="title">Temporary Base</h1>              
+  </ion-header-bar>
+
+  <ion-content class="has-footer" overflow-scroll="true">
+
+    <ion-list class="closure-resolution-list">     
+
+      <ion-item class="item-icon-right">              
+        <span class="input-label">Directorate</span>
+        <input type="text" readonly placeholder="-" ng-model="tempBase.DirectorateName" />
+      </ion-item>      
+
+      <ion-item class="item-icon-right">      
+        <span class="input-label">Department</span>
+        <input type="text" readonly placeholder="-" ng-model="tempBase.DepartmentName" />
+      </ion-item>      
+
+      <ion-item class="item-icon-right">      
+        <span class="input-label">Section</span>
+        <input type="text" readonly placeholder="-" ng-model="tempBase.SectionName" />
+      </ion-item>      
+
+      <ion-item class="item-icon-right">      
+        <span class="input-label">District</span>
+        <input type="text" readonly placeholder="-" ng-model="tempBase.DistrictName" />
+      </ion-item>      
+
+      <ion-item class="item-icon-right">      
+        <span class="input-label">Sub-Section</span>        
+        <input type="text" readonly placeholder="-" ng-model="tempBase.SubsectionName" />
+      </ion-item>      
+
+      <ion-item class="item-icon-right" ng-click="selectBase()">      
+        <i class="icon icon-blue ion-android-arrow-dropdown-circle"></i>
+        <span class="input-label">Base</span>
+        <input type="text" readonly placeholder="-" ng-model="tempBase.BaseName" />
+      </ion-item>      
+
+      <ion-item class="item-icon-right">
+        <i class="icon icon-blue ion-ios-calendar-outline"></i>
+        <span class="input-label">From Date</span>
+        <input type="date" placeholder="-" select-on-click ng-model="tempBase.fromDate">        
+      </ion-item>      
+      <ion-item class="item-icon-right">
+        <i class="icon icon-blue ion-ios-clock"></i>
+        <span class="input-label">From Time</span>
+        <input type="time" placeholder="-" select-on-click ng-model="tempBase.fromTime">        
+      </ion-item>      
+
+      <ion-item class="item-icon-right">
+        <i class="icon icon-blue ion-ios-calendar-outline"></i>
+        <span class="input-label">To Date</span>
+        <input type="date" placeholder="-" select-on-click ng-model="tempBase.toDate">                
+      </ion-item>      
+            <ion-item class="item-icon-right">
+        <i class="icon icon-blue ion-ios-clock"></i>
+        <span class="input-label">To Time</span>
+        <input type="time" placeholder="-" select-on-click ng-model="tempBase.toTime">        
+      </ion-item>      
+
+      <ion-item class="item-icon-right">
+        <i class="icon icon-blue ion-android-textsms"></i>
+        <span class="input-label">Reason</span>
+        <textarea msd-elastic placeholder="-" select-on-click ng-model="tempBase.reason" style="width: calc(100% - 40px);"></textarea>        
+      </ion-item>      
+
+    </ion-list>
+
+    </ion-list>
+
+  </ion-content>
+
+  <div class="bar bar-footer">    
+    <button class="button icon ion-checkmark-circled button-block button-positive" ng-click="submit()" style="width:100%; margin-top:0px; margin-bottom:0px;">  Submit</button>    
+  </div>
+
+</ion-view>

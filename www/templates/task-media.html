@@ -1,0 +1,30 @@
+<ion-view view-title="task-photos">
+  <ion-content class="has-inc-header" overflow-scroll="true">
+		<div class="item-divider item">Media Gallery</div>
+
+      <!-- no photos - phone -->                          
+      <div ng-show="photos.length < 1" class="no-photos placeholder-image">
+        <img src="img/photo-item-illu.jpg" width="200px" height="200px">
+        <h3>No Media</h3>
+        <h5>Select capture to capture a photo.</h5>
+      </div>
+
+	    <ion-list class="media-items">
+    		<ion-item class="item-thumbnail-left item-button-right item item-right-botton-fix" ng-repeat="media in mediaItems" ng-click="viewMedia(media)">
+		      <img ng-src="{{media.DisplayPath}}" class="media-display-icon"/>
+		      <p><strong>{{media.FileName}}</strong></p>
+          <p><strong>Date:</strong> {{media.Date}}</p>
+		      <p><strong>Time:</strong> {{media.Time}}</p>
+          <p ng-show='media.Uploaded === "true"' style="font-style: italic; font-weight: bold; color: #55976D;">Uploaded</p>     
+
+          <button style="" class="button icon ion-gear-b dark-blue-but" ng-click="mediaSettings($index, media); $event.stopPropagation();"></button>   
+    		</ion-item>
+  		</ion-list>
+  </ion-content>   
+  
+  <ion-footer-bar class="inc-page-footer button-bar">  	
+    <button class="button inc-navigate-but button-block incident-button icon ion-android-attach" ng-click="addMedia()">  ADD MEDIA</button>
+  </ion-footer-bar>    
+
+
+</ion-view>
